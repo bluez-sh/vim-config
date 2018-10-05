@@ -1,4 +1,5 @@
 execute pathogen#infect()
+
 inoremap jj <Esc>
 let mapleader=" "
 map <leader>s :source ~/.vimrc<CR>
@@ -22,8 +23,25 @@ set autoindent
 set hlsearch
 set showmatch
 
+set splitbelow
+set splitright
+
 filetype on
 colorscheme Tomorrow-Night
 
 set guifont=Menlo\ Regular:h18
 set colorcolumn=90
+
+" Command-T
+set wildignore+=*.log,*.sql,*.cache
+noremap <Leader>r :CommandTFlush<CR>
+
+" NerdTree
+let NERDTreeMapActivateNode='<right>'
+let NERDTreeShowHidden=1
+nmap <leader>n :NERDTreeToggle<CR>
+nmap <leader>j :NERDTreeFind<CR>
+autocmd VimEnter * NERDTree
+autocmd VimEnter * wincmd p
+let NERDTreeIgnore=['\.DS_Store','\~$','\.swp']
+
