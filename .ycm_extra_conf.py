@@ -14,8 +14,8 @@ BASE_FLAGS = [
         '-fexceptions',
         '-ferror-limit=10000',
         '-DNDEBUG',
-        '-std=c89',
-        # '-xc++',
+        '-std=c99',
+        '-xc',
         '-I/usr/lib/',
         '-I/usr/include/',
         ]

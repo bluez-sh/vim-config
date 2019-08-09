@@ -9,6 +9,8 @@ vnoremap <C-C> :w !xclip -i -sel c<CR><CR>
 
 autocmd filetype cpp nnoremap <C-c> :w <bar> !clear && g++ -std=c++11 % -Wall && ./a.out<CR>
 autocmd filetype c nnoremap <C-c> :w <bar> !clear && gcc % -Wall && ./a.out<CR>
+autocmd filetype java nnoremap <C-c> :w <bar> !clear && java %<CR>
+au BufRead,BufNewFile *.md setlocal textwidth=80
 
 command! MakeTags !ctags -R .
 
@@ -20,27 +22,45 @@ set history=100
 set nocompatible
 syntax on
 
+set cindent
+set expandtab
+"set cinoptions=(0
+"autocmd FileType make,automake set noexpandtab shiftwidth=8 softtabstop=8
+"highlight ForbiddenWhitespace ctermbg=red guibg=red
+"match ForbiddenWhitespace /\s\+$\|\t/
+"autocmd InsertEnter * match ForbiddenWhitespace /\t\|\s\+\%#\@@<!$/
+
 filetype indent on
 set nowrap
-set tabstop=4
+set softtabstop=4
 set shiftwidth=4
 set smartindent
 set autoindent
 
 set hlsearch
 set showmatch
+set incsearch
+nnoremap <leader>w /\s\+$<CR>
 
 set splitbelow
 set splitright
 
 filetype on
-colorscheme Tomorrow
+colorscheme snazzy
 
 set guifont=Menlo\ Regular:h18
 set colorcolumn=80
 
 set foldmethod=syntax
 set foldlevelstart=20
+
+" Autoclose Script
+" Toggle with <Leader>a
+
+" My Snippets
+nnoremap ,cpp :-1read $HOME/.vim/.snip_default.cpp<CR>3jo
+nnoremap ,cpcpp :-1read $HOME/.vim/.snip_cp.cpp<CR>4jo
+nnoremap ,java :-1read $HOME/.vim/.snip_jv.java<CR>3e
 
 " Backup System
 set backup
@@ -72,7 +92,15 @@ nnoremap <leader>Y :let g:ycm_auto_trigger=1<CR>
 " Lightline
 set laststatus=2
 
-" NerdCommenter 
+" NerdCommenter
 filetype plugin on
 
+" ALE
+let g:ale_fixers = ['remove_trailing_lines', 'trim_whitespace']
+let g:ale_fix_on_save = 1
+let g:ale_completion_enabled = 0
 
+let g:ale_linters = { 'c++': ['clang++'], 'c': ['clang'], }
+let g:ale_linters_explicit = 1
+
+map <leader>T :ALEToggle<CR>
