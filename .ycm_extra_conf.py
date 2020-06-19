@@ -14,10 +14,14 @@ BASE_FLAGS = [
         '-fexceptions',
         '-ferror-limit=10000',
         '-DNDEBUG',
+        # '-std=c++14',
+        # '-xc++',
         '-std=c99',
-        '-xc',
+        '-xc'
         '-I/usr/lib/',
         '-I/usr/include/',
+        # '-I/lib/modules/5.4.25-2-lts/build/include/'
+        # '-I/lib/modules/5.4.25-2-lts/build/include/linux/'
         ]
 
 SOURCE_EXTENSIONS = [

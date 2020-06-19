@@ -1,15 +1,21 @@
 execute pathogen#infect()
 
-inoremap jj <Esc>
+"inoremap jj <Esc>
 let mapleader=" "
 map <leader>s :source ~/.vimrc<CR>
 nnoremap <silent> <leader>/ :nohlsearch<Bar>:echo<CR>
 nnoremap <Leader><Leader> :e#<CR>
-vnoremap <C-C> :w !xclip -i -sel c<CR><CR>
+
+"vnoremap <C-C> :w !xclip -i -sel c<CR><CR>
+vmap <F6> :!xclip -f -sel clip<CR>
+map <F7> mz:-1r !xclip -o -sel clip<CR>`z
 
 autocmd filetype cpp nnoremap <C-c> :w <bar> !clear && g++ -std=c++11 % -Wall && ./a.out<CR>
 autocmd filetype c nnoremap <C-c> :w <bar> !clear && gcc % -Wall && ./a.out<CR>
 autocmd filetype java nnoremap <C-c> :w <bar> !clear && java %<CR>
+autocmd filetype lex nnoremap <C-c> :w <bar> !clear && lex % && gcc lex.yy.c -Wall && ./a.out<CR>
+autocmd filetype ada nnoremap <C-c> :w <bar> !clear && gnatgcc -o % && ./a.out<CR>
+autocmd filetype tex nnoremap <C-c> :w <bar> !clear && rubber -d %<CR>
 au BufRead,BufNewFile *.md setlocal textwidth=80
 
 command! MakeTags !ctags -R .
@@ -32,8 +38,10 @@ set expandtab
 
 filetype indent on
 set nowrap
-set softtabstop=4
-set shiftwidth=4
+set tabstop=8
+set softtabstop=8
+set shiftwidth=8
+set noexpandtab
 set smartindent
 set autoindent
 
@@ -47,8 +55,10 @@ set splitright
 
 filetype on
 colorscheme snazzy
+highlight Normal guibg=NONE ctermbg=NONE
 
 set guifont=Menlo\ Regular:h18
+"set guifont=Courier\ New:s11
 set colorcolumn=80
 
 set foldmethod=syntax
@@ -83,8 +93,10 @@ nmap <leader>j :NERDTreeFind<CR>
 let NERDTreeIgnore=['\.DS_Store','\~$','\.swp']
 
 " YouCompleteMe
-let g:ycm_global_ycm_extra_conf = "~/.vim/.ycm_extra_conf.py"
+let g:ycm_global_ycm_extra_conf = "~/.vim/.ycm_extra_conf_2.py"
 let g:ycm_enable_diagnostic_signs = 0
+
+let g:ycm_enable_diagnostic_highlighting = 0
 
 nnoremap <leader>y :let g:ycm_auto_trigger=0<CR>
 nnoremap <leader>Y :let g:ycm_auto_trigger=1<CR>
@@ -100,7 +112,7 @@ let g:ale_fixers = ['remove_trailing_lines', 'trim_whitespace']
 let g:ale_fix_on_save = 1
 let g:ale_completion_enabled = 0
 
-let g:ale_linters = { 'c++': ['clang++'], 'c': ['clang'], }
+let g:ale_linters = { 'c++': ['clang++'], 'c': ['clang'], 'java': ['javac'], }
 let g:ale_linters_explicit = 1
 
 map <leader>T :ALEToggle<CR>
