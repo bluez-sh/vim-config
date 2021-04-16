@@ -16,6 +16,7 @@ autocmd filetype java nnoremap <C-c> :w <bar> !clear && java %<CR>
 autocmd filetype lex nnoremap <C-c> :w <bar> !clear && lex % && gcc lex.yy.c -Wall && ./a.out<CR>
 autocmd filetype ada nnoremap <C-c> :w <bar> !clear && gnatgcc -o % && ./a.out<CR>
 autocmd filetype tex nnoremap <C-c> :w <bar> !clear && rubber -d %<CR>
+autocmd filetype python nnoremap <C-c> :w <bar> !clear && python %<CR>
 au BufRead,BufNewFile *.md setlocal textwidth=80
 
 command! MakeTags !ctags -R .
@@ -28,8 +29,6 @@ set history=100
 set nocompatible
 syntax on
 
-set cindent
-set expandtab
 "set cinoptions=(0
 "autocmd FileType make,automake set noexpandtab shiftwidth=8 softtabstop=8
 "highlight ForbiddenWhitespace ctermbg=red guibg=red
@@ -37,11 +36,16 @@ set expandtab
 "autocmd InsertEnter * match ForbiddenWhitespace /\t\|\s\+\%#\@@<!$/
 
 filetype indent on
+set cindent
+set expandtab
+"set noexpandtab
 set nowrap
+"set tabstop=8
+"set softtabstop=8
+"set shiftwidth=8
 set tabstop=8
-set softtabstop=8
-set shiftwidth=8
-set noexpandtab
+set softtabstop=4
+set shiftwidth=4
 set smartindent
 set autoindent
 
