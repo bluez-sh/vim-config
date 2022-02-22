@@ -1,4 +1,15 @@
-execute pathogen#infect()
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
+Plugin 'VundleVim/Vundle.vim'
+Plugin 'dense-analysis/ale'
+Plugin 'itchyny/lightline.vim'
+Plugin 'preservim/nerdtree'
+Plugin 'wincent/command-t'
+Plugin 'preservim/nerdcommenter'
+Plugin 'ervandew/supertab'
+Plugin 'ycm-core/YouCompleteMe'
+
+call vundle#end()
 
 "inoremap jj <Esc>
 let mapleader=" "
@@ -63,7 +74,7 @@ highlight Normal guibg=NONE ctermbg=NONE
 
 set guifont=Menlo\ Regular:h18
 "set guifont=Courier\ New:s11
-set colorcolumn=80
+"set colorcolumn=80
 
 set foldmethod=syntax
 set foldlevelstart=20
@@ -109,7 +120,7 @@ nnoremap <leader>Y :let g:ycm_auto_trigger=1<CR>
 set laststatus=2
 
 " NerdCommenter
-filetype plugin on
+filetype plugin indent on
 
 " ALE
 let g:ale_fixers = ['remove_trailing_lines', 'trim_whitespace']
